@@ -37,7 +37,7 @@ Se for utilizar o site com o servidor embutido do PHP
 php -S localhost:9000
 ~~~
 é necessário acessar a pasta App -> config -> constants e informar a porta utilizada na constante URL, exemplo:
-define('URL', 'http://localhost:9000/world-connection'); .
+define('URL', 'http://localhost:9000/worldconnection'); .
 
 # Equipe
 * Eduardo Domingos
