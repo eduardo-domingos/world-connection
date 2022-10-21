@@ -23,6 +23,14 @@ Este projeto é um TCC (Trabalho de Conclusão de Curso) que consiste em um web 
 # Observações
 Como o código desse projeto está sendo refatorado(refeito), o projeto ainda não está pronto e nem todas as telas estão 100% funcionais.
 
+Para o projeto funcionar é necessário ter o composer instalado e executar o código abaixo, dentro da pasta do projeto
+~~~
+composer install
+~~~
+esse comando irá instalar todas bibliotecas utilizadas no projeto.
+
+A pasta vendor/WC, contém um modelo de mini framework que foi desenvolvido manualmente
+
 O Projeto está configurado para funcionar no Wampp/Xampp/Lamp
 Se for utilizar o site com o servidor embutido do PHP
 ~~~
