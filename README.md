@@ -1,6 +1,5 @@
-# World Connection
-TCC (Trabalho de Conclusão de Curos) remodelado
-Web Site de investimentos em projetos
+# Sobre World Connection
+Este é um projeto é um TCC (Trabalho de Conclusão de Curos) que consiste em um web site com modelo de investimento equity crowdfunding, para projetos/startups, ou seja, se você possuí uma ideia, porém não possuí recurso financeiro para tal, essa plataforma talvez possa ajudar
 
 # Tecnologias Utilizadas
 * PHP   => 8.1.11
@@ -9,6 +8,17 @@ Web Site de investimentos em projetos
 * CSS3
 * JavaScript
 * Bootstrap 4.6
+
+# Especificações Técnicas
+MVC
+Orientação a Objetos
+PDO
+Composer (autoload)
+PHPDOC
+PSRs
+URL amigávies (Class/Method/Params)
+htaccess (Para redirecionamento e Bloquear acesso as pastas)
+Ajax
 
 # Observações
 O Projeto está configurado para funcionar no Wampp/Xampp/Lamp
