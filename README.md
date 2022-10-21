@@ -1,5 +1,5 @@
-# Sobre World Connection
-Este é um projeto é um TCC (Trabalho de Conclusão de Curos) que consiste em um web site com modelo de investimento equity crowdfunding, para projetos/startups, ou seja, se você possuí uma ideia, porém não possuí recurso financeiro para tal, essa plataforma talvez possa ajudar
+# Sobre o projeto
+Este projeto é um TCC (Trabalho de Conclusão de Curso) que consiste em um web site com modelo de investimento equity crowdfunding, para projetos, ou seja, se você possuí uma ideia, porém não possuí recurso financeiro para tal, essa plataforma talvez possa ajudar
 
 # Tecnologias Utilizadas
 * PHP   => 8.1.11
@@ -21,13 +21,15 @@ htaccess (Para redirecionamento e Bloquear acesso as pastas)
 Ajax
 
 # Observações
+Como o código desse projeto está sendo refatorado(refeito), o projeto ainda não está pronto e nem todas as telas estão 100% funcionais
+
 O Projeto está configurado para funcionar no Wampp/Xampp/Lamp
 Se for utilizar o site com o servidor embutido do PHP
 ~~~
 php -S localhost:9000
 ~~~
 é necessário acessar a pasta App -> config -> constants e informar a porta utilizada na constante URL, exemplo:
-define('URL', 'http://localhost:9000/worldconnection-mvc');
+define('URL', 'http://localhost:9000/world-connection');
 
 # Equipe
 Eduardo Domingos
