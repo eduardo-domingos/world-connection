@@ -1,0 +1,8 @@
+App/env/.env
+App/Logs/*.log
+Doc/*.mwb
+Doc/*.mwb.bak
+vendor/composer/
+vendor/autoload.php
+nbproject/
+composer.lock

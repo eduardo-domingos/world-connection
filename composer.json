@@ -1,0 +1,21 @@
+{
+    "name": "edu/wc",
+    "description": "Site para investimento em projetos",
+    "type": "project",
+    "require": {
+        "php": ">=8.1"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "App/",
+            "WC\\": "vendor/WC"
+        }
+    },
+    "authors": [
+        {
+            "name": "Eduardo"
+        }
+    ],
+    "minimum-stability": "stable"
+}
