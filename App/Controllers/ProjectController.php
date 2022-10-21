@@ -24,6 +24,9 @@ class ProjectController extends Action
     public function createProject(): void
     {
         if(isset($_SESSION['user']['id']) && isset($_SESSION['user']['name']) && isset($_SESSION['user']['email'])){
+            
+            $this->view->projectError = false;
+            
             $this->render('createproject', 'layout');
         }else{
              header('Location: '.URL_PREFIX.'/login?login=error');
@@ -57,6 +60,10 @@ class ProjectController extends Action
         if(count($projetc->validInsertProject()) === 0){
             $project->saveProject();
         }else{
+            
+            $this->view->projectError = true;
+            
+            $this->render('createproject', 'layout');
             
         }
         
