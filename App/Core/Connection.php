@@ -25,6 +25,7 @@ class Connection
             
         } catch (PDOException $error) {
             phpError($error->getCode(),  $error->getMessage(), $error->getFile(), $error->getLine());
+            exit();
         }
     }
     
