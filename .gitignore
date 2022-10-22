@@ -1,4 +1,5 @@
-App/env/.env
+App/env/
+!App/env/.env
 App/Logs/*.log
 Doc/*.mwb
 Doc/*.mwb.bak
