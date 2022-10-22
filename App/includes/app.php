@@ -11,8 +11,8 @@ use App\Core\Session;
 
 Session::init();
 
-if(Environment::verifyEnv()){
-    Environment::loadVariables(__DIR__.'/../env');
+if(Environment::verifyEnv(__DIR__.'/../env')){
+    Environment::loadVariables();
 }else{
     exit("o arquivo .env precisa ser configurado na pasta App\\env\\.env");
 }

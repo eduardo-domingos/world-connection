@@ -8,14 +8,15 @@ namespace App\Core;
 class Environment 
 {
     
+    private static $pathFile;
+    
    /**
     * Carrega varíaveis de ambiente para configurar o projeto
-    * @param $dir string
     * @return void
     */
-   public static function loadVariables(string $dir): void
+   public static function loadVariables(): void
    {
-        $lines = file($dir.'/.env');
+        $lines = file(self::$pathFile.'/.env');
 
         foreach($lines as $line){
             putenv(trim($line));
@@ -25,11 +26,13 @@ class Environment
    
    /**
     * Verifica se o arquivo env existe
+    * @param string $dir
     * @return bool
     */
-   public static function verifyEnv(): bool
+   public static function verifyEnv(string $dir): bool
    {
        if(file_exists($dir.'/.env')){
+           self::$pathFile = $dir;
            return true;
        }else{
            return false;
