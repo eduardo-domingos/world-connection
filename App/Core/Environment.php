@@ -15,14 +15,26 @@ class Environment
     */
    public static function loadVariables(string $dir): void
    {
-       if(file_exists($dir.'/.env')){
-           
-            $lines = file($dir.'/.env');
+        $lines = file($dir.'/.env');
 
-            foreach($lines as $line){
-                putenv(trim($line));
-            }
+        foreach($lines as $line){
+            putenv(trim($line));
         }
+       
+   }
+   
+   /**
+    * Verifica se o arquivo env existe
+    * @return bool
+    */
+   public static function verifyEnv(): bool
+   {
+       if(file_exists($dir.'/.env')){
+           return true;
+       }else{
+           return false;
+       }
+        
    }
     
 }
