@@ -19,24 +19,8 @@
             <div class="col">
                 <div class="form-group">
                     <label>E-mail</label>
-                    <input type="email"  name="email" value="<?= $this->view->userForm['email'] ?>" maxlength="50" class="form-control" autocomplete="off" required placeholder="E-mail">
+                    <input type="email"  name="email" value="<?= $this->view->userForm['email'] ?>" maxlength="50" class="form-control" autocomplete="off" required placeholder="exemplo@email.com">
                 </div> 
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="col">
-                <div class="form-group">
-                    <label>Número</label>
-                    <input type="tel" maxlength="15" name="phone" value="<?= $this->view->userForm['phone'] ?>" class="form-control" autocomplete="off" required placeholder="digite apenas números">
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="form-group">
-                    <label>CPF/CNPJ</label>
-                    <input type="text" maxlength="14" id="cpfCnpj" name="cpfCnpj" value="<?= $this->view->userForm['cpfCnpj'] ?>" class="form-control" autocomplete="off" required placeholder="digite apenas números">
-                </div>
             </div>
         </div>
 
@@ -51,15 +35,40 @@
         <div class="form-row">
             <div class="col">
                 <div class="form-group">
+                    <label>Celular</label>
+                    <input type="text" maxlength="15" onkeyup="maskPhone(this)" name="phone" value="<?= $this->view->userForm['phone'] ?>" class="form-control" autocomplete="off" required placeholder="(99)99999-9999">
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="form-group">
+                    <label>CPF</label>
+                    <input type="text" id="cpf" name="cpf" value="<?= $this->view->userForm['cpf'] ?>" class="form-control" autocomplete="off" required placeholder="000.000.000-00">
+                </div>
+            </div>
+
+            <div class="col" hidden>
+                <div class="form-group">
+                    <label>CNPJ</label>
+                    <input type="text" id="cnpj" name="cnpj" value="<?= $this->view->userForm['cnpj'] ?>" class="form-control" autocomplete="off" placeholder="XX.XXX.XXX/XXXX-XX">
+                </div>
+            </div>
+            
+
+        </div>
+
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
                     <label>Senha</label>
-                    <input id="password" type="password" name="password" value="<?= $this->view->userForm['password'] ?>" class="form-control" autocomplete="off" required placeholder="Senha">
+                    <input id="password" type="password" name="password" value="<?= $this->view->userForm['password'] ?>" class="form-control" autocomplete="off" required placeholder="*******">
                 </div> 
             </div>
 
             <div class="col">
                 <div class="form-group">
                     <label>Repetir Senha</label>
-                    <input id="repeatPassword" type="password"  name="repeatPassword" value="<?= $this->view->userForm['repeatPassword'] ?>" class="form-control" autocomplete="off" required placeholder="Repetir Senha" oninput="validaSenha(this)">
+                    <input id="repeatPassword" type="password"  name="repeatPassword" value="<?= $this->view->userForm['repeatPassword'] ?>" class="form-control" autocomplete="off" required placeholder="*******">
                 </div> 
             </div>
         </div>
