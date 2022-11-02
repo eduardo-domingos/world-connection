@@ -31,5 +31,7 @@ define('URL_PREFIX', '/world-connection');
 
 /**
  * Gera log de erros (erros fatais e avisos) na aplicação
+ * false -> apresenta os erros na interface
+ * true  -> apresenta os erros no arquivo de log, na interface não apresenta nada
  */
 define('DEBUG', true);
