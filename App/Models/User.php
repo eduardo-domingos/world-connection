@@ -116,7 +116,7 @@ class User extends Model
             $valid['email'] = 'Email inválido';
         }
         
-        if(strlen($this->__get('phone')) < 15 || empty(strlen($this->__get('phone')))){
+        if(strlen($this->__get('phone')) < 14 || empty(strlen($this->__get('phone')))){
             $valid['phone'] = 'Telefone inválido';
         }
         

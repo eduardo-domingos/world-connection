@@ -20,7 +20,8 @@ class UserController extends Action
         $this->view->userForm = [
                 'name'           => "",
                 'email'          => "",
-                'cpfCnpj'        => "",
+                'cpf'            => "",
+                'cnpj'           => "",
                 'phone'          => "",
                 'typePerson'     => "",
                 'password'       => "",
@@ -40,9 +41,9 @@ class UserController extends Action
         
         $name = htmlspecialchars(strip_tags($_POST['name']));
         $email = htmlspecialchars(strip_tags($_POST['email']));
-        $cpfCnpj = htmlspecialchars(strip_tags($_POST['cpfCnpj']));
+        $cpfCnpj = htmlspecialchars(strip_tags($_POST['cpf'] ?? $_POST['cnpj']));
         $phone = htmlspecialchars(strip_tags($_POST['phone']));
-        $typePerson = htmlspecialchars(strip_tags($_POST['typePerson']));
+        $typePerson = htmlspecialchars(strip_tags($_POST['person']));
         $password = htmlspecialchars(strip_tags($_POST['password']));
         $repeatPassword = htmlspecialchars(strip_tags($_POST['repeatPassword']));
         
@@ -65,9 +66,10 @@ class UserController extends Action
             $this->view->userForm = [
                 'name'           => $_POST['name'],
                 'email'          => $_POST['email'],
-                'cpfCnpj'        => $_POST['cpfCnpj'],
+                'cpf'            => $_POST['cpf'] ?? '',
+                'cnpj'           => $_POST['cnpj'] ?? '',
                 'phone'          => $_POST['phone'],
-                'typePerson'     => $_POST['typePerson'],
+                'typePerson'     => $_POST['person'],
                 'password'       => $_POST['password'],
                 'repeatPassword' => $_POST['repeatPassword']
             ];

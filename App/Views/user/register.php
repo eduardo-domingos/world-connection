@@ -26,7 +26,7 @@
 
         <div class="form-group">
             <label>Pessoa</label>
-            <select name="typePerson" class="form-control" id="typePerson">
+            <select name="person" class="form-control" onchange="typePerson(this)" >
                 <option value="CPF">Pessoa Física</option>
                 <option value="CNPJ">Pessoa Jurídica</option>
             </select>
@@ -40,20 +40,19 @@
                 </div>
             </div>
 
-            <div class="col">
+            <div class="col" id="div-cpf">
                 <div class="form-group">
                     <label>CPF</label>
-                    <input type="text" id="cpf" name="cpf" value="<?= $this->view->userForm['cpf'] ?>" class="form-control" autocomplete="off" required placeholder="000.000.000-00">
+                    <input type="text" id="cpf" name="cpf" onkeyup="maskCpf(this)" value="<?= $this->view->userForm['cpf'] ?>" class="form-control" autocomplete="off" required placeholder="000.000.000-00">
                 </div>
             </div>
 
-            <div class="col" hidden>
+            <div class="col" id="div-cnpj" hidden>
                 <div class="form-group">
                     <label>CNPJ</label>
-                    <input type="text" id="cnpj" name="cnpj" value="<?= $this->view->userForm['cnpj'] ?>" class="form-control" autocomplete="off" placeholder="XX.XXX.XXX/XXXX-XX">
+                    <input type="text" id="cnpj" name="cnpj" onkeyup="maskCnpj(this)" value="<?= $this->view->userForm['cnpj'] ?>" class="form-control" autocomplete="off" placeholder="XX.XXX.XXX/XXXX-XX">
                 </div>
             </div>
-            
 
         </div>
 
