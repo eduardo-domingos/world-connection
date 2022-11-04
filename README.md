@@ -18,7 +18,8 @@ Este projeto é um TCC (Trabalho de Conclusão de Curso) que consiste em um web 
 * PSRs
 * URL amigávies (Class/Method/Params)
 * htaccess (Para redirecionamento e Bloquear acesso as pastas)
-* Ajax
+* Padrão de Projeto Singleton
+* Ajax (Fetch API)
 
 # Observações
 Como o código desse projeto está sendo refatorado(refeito), o projeto ainda não está pronto e nem todas as telas estão 100% funcionais.

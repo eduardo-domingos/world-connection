@@ -21,8 +21,9 @@ class Connection
     /**
      * Se não existe a conexão com o banco, cria
      * Se existir a conexão com o banco, retorna a existente
+     * @return PDO
      */
-    public static function getDb()
+    public static function getDb(): PDO
     {
 
         try{
