@@ -5,24 +5,24 @@
             <img src="<?= URL ?>/Resources/icons/logo_wc.png" id="img_login" alt="logo">
         </picture>
     </div>
+    
+    <?php if(!empty($this->view->userForm['login_error'])){ ?>
+        <div class="alert alert-danger text-center mt-3">
+            <?= $this->view->userForm['login_error'] ?>
+        </div>
+    <?php } ?>
 
-    <form action="<?= URL ?>/autentication" method="POST">
+    <form action="<?= URL ?>/login" method="POST">
         
         <div class="form-group">
             <label>Usuário</label>
-            <input type="email" name="email" class="form-control" placeholder="Email" required>
+            <input type="email" name="email" value="<?= $this->view->userForm['email'] ?>" class="form-control" placeholder="Email">
         </div>
 
         <div class="form-group">
             <label>Senha</label>
-            <input type="password" name="password" class="form-control" placeholder="Senha" autocomplete="off" required>
+            <input type="password" name="password" value="<?= $this->view->userForm['password'] ?>" class="form-control" placeholder="Senha">
         </div>
-        
-        <?php if($this->view->login === "error"){ ?>
-            <div class="text-center">
-                <span class="text text-danger">* Email ou Senha inválido(s)</span>
-            </div>
-        <?php } ?>
 
         <div class="text-right">
             <button type="submit" class="btn btn-primary">Entrar</button>

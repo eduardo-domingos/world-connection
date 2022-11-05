@@ -105,8 +105,7 @@ class UserController extends Action
         $this->view->userForm = [
             'email'          => '',
             'password'       => '',
-            'email_error'    => '',
-            'password_error' => ''
+            'login_error'    => ''
         ];
 
         $this->render('login', 'layout_login');
@@ -123,7 +122,7 @@ class UserController extends Action
         $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL, FILTER_SANITIZE_EMAIL);
         $password = htmlspecialchars(strip_tags($_POST['password']));
         
-        $user->__set('email',$email);
+        $user->__set('email', $email);
         $user->__set('password', $password);
         
         $userData = $user->autentication();
@@ -133,17 +132,17 @@ class UserController extends Action
             Session::login($userData);
             
             header('Location: '.URL_PREFIX.'/');
+            die();
             
         }else{
 
             $this->view->userForm = [
                 'email'          => $_POST['email'],
                 'password'       => $_POST['password'],
-                'email_error'    => $_POST['email_error'],
-                'password_error' => $_POST['password_error']
+                'login_error'    => 'Email ou Senha inválidos'
             ];
 
-            header('Location: '.URL_PREFIX.'/login');
+            $this->render('login', 'layout_login');
         }
     }
     
@@ -155,6 +154,7 @@ class UserController extends Action
     {
         Session::logout();
         header('Location: '.URL_PREFIX.'/');
+        die();
     }
     
     /**
@@ -182,6 +182,7 @@ class UserController extends Action
             
         }else{
              header('Location: '.URL_PREFIX.'/login');
+             die();
         }
     }
 }

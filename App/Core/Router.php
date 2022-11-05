@@ -73,7 +73,7 @@ class Router extends Bootstrap
         ];
         
         $routes['loginForm'] = [
-            'route'      => '/autentication',
+            'route'      => '/login',
             'controller' => 'UserController',
             'action'     => 'autentication',
             'request_method' => 'POST'
