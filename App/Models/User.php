@@ -108,21 +108,33 @@ class User extends Model
     {
         $valid = [];
         
-        if(strlen($this->__get('name')) < 3 || empty($this->__get('name'))){
-            $valid['name_error'] = 'Nome inválido';
+        if(strlen($this->__get('name')) < 3){
+            $valid['name_error'] = 'O nome deve ter no mínimo 3 caracteres';
+        }elseif(empty($this->__get('name'))){
+            $valid['name_error'] = 'Preencha o campo nome';
         }
         
-        if(strlen($this->__get('email')) < 13 || empty($this->__get('email'))){
+        if(filter_var($this->__get('email'), FILTER_VALIDATE_EMAIL, FILTER_SANITIZE_EMAIL) === false){
             $valid['email_error'] = 'Email inválido';
+        }elseif(empty($this->__get('email'))){
+            $valid['email_error'] = 'Preencha o campo e-mail';
         }
         
-        if(strlen($this->__get('phone')) < 14 || empty($this->__get('phone'))){
-            $valid['phone_error'] = 'Telefone inválido';
+        if(empty($this->__get('phone'))){
+            $valid['phone_error'] = 'Preencha o campo celular';
+        }elseif(strlen($this->__get('phone')) < 14){
+            $valid['phone_error'] = 'Celular inválido';
         }
         
         $qntdCpfCnpj = ($this->__get('typePerson') === 'CPF') ? 14 : 18;
         
-        if(strlen($this->__get('cpfCnpj')) < $qntdCpfCnpj || empty($this->__get('cpfCnpj'))){
+        if(empty($this->__get('cpfCnpj'))){
+            if($qntdCpfCnpj === 14){
+                $valid['cpf_error'] = 'Preencha o campo cpf';
+            }else{
+                $valid['cnpj_error'] = 'Preencha o campo cnpj';
+            }
+        }elseif(strlen($this->__get('cpfCnpj'))){
             if($qntdCpfCnpj === 14){
                 $valid['cpf_error'] = 'CPF inválido';
             }else{
@@ -130,17 +142,17 @@ class User extends Model
             }
         }
         
-        if(strlen($this->__get('password')) < 8 || empty($this->__get('password'))){
-            $valid['password_error'] = 'Senha inválida';
+        if(strlen($this->__get('password')) < 8){
+            $valid['password_error'] = 'A senha deve ter no mínimo 8 caracteres';
+        }elseif(empty($this->__get('password'))){
+            $valid['password_error'] = 'Preencha o campo senha';
         }
         
-        if(strlen($this->__get('repeatPassword')) < 8 || empty($this->__get('repeatPassword'))){
-            $valid['repeatPassword_error'] = 'Repetir senha inválido';
-        }
-        
-        if($this->__get('password') !== $this->__get('repeatPassword')){
-            $valid['password_error'] = 'Senhas não conferem';
-        }
+        if(empty($this->__get('repeatPassword'))){
+            $valid['repeatPassword_error'] = 'Confirme a senha';
+        }elseif($this->__get('password') !== $this->__get('repeatPassword')){
+            $valid['repeatPassword_error'] = ' As senhas são diferentes';
+        } 
         
         return $valid;
         

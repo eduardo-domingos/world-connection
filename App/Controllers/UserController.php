@@ -18,20 +18,20 @@ class UserController extends Action
         $this->view->registerError = false;
         
         $this->view->userForm = [
-                'name'           => "",
-                'email'          => "",
-                'cpf'            => "",
-                'cnpj'           => "",
-                'phone'          => "",
-                'typePerson'     => "",
-                'password'       => "",
-                'repeatPassword' => "",
-                'name_error'     => "",
-                'email_error'    => "",
-                'cpf_error'      => "",
-                'cnpj_error'     => "",
-                'phone_error'    => "",
-                'password_error' => "",
+                'name'                 => "",
+                'email'                => "",
+                'cpf'                  => "",
+                'cnpj'                 => "",
+                'phone'                => "",
+                'typePerson'           => "",
+                'password'             => "",
+                'repeatPassword'       => "",
+                'name_error'           => "",
+                'email_error'          => "",
+                'cpf_error'            => "",
+                'cnpj_error'           => "",
+                'phone_error'          => "",
+                'password_error'       => "",
                 'repeatPassword_error' => ""
             ];
         
@@ -73,21 +73,21 @@ class UserController extends Action
         }else{
             
             $this->view->userForm = [
-                'name'           => $_POST['name'],
-                'email'          => $_POST['email'],
-                'cpf'            => $_POST['cpf'] ?? '',
-                'cnpj'           => $_POST['cnpj'] ?? '',
-                'phone'          => $_POST['phone'],
-                'typePerson'     => $_POST['person'],
-                'password'       => $_POST['password'],
-                'repeatPassword' => $_POST['repeatPassword'],
-                'name_error'     => $valid['name_error'],
-                'email_error'    => $valid['email_error'],
-                'cpf_error'      => $valid['cpf_error'] ?? '',
-                'cnpj_error'     => $valid['cnpj_error'] ?? '',
-                'phone_error'          => $valid['phone_error'],
-                'password_error'       => $valid['password_error'],
-                'repeatPassword_error' => $valid['repeatPassword_error']
+                'name'                 => $_POST['name'],
+                'email'                => $_POST['email'],
+                'cpf'                  => $_POST['cpf'] ?? '',
+                'cnpj'                 => $_POST['cnpj'] ?? '',
+                'phone'                => $_POST['phone'],
+                'typePerson'           => $_POST['person'],
+                'password'             => $_POST['password'],
+                'repeatPassword'       => $_POST['repeatPassword'],
+                'name_error'           => $valid['name_error'] ?? '',
+                'email_error'          => $valid['email_error'] ?? '',
+                'cpf_error'            => $valid['cpf_error'] ?? '',
+                'cnpj_error'           => $valid['cnpj_error'] ?? '',
+                'phone_error'          => $valid['phone_error'] ?? '',
+                'password_error'       => $valid['password_error'] ?? '',
+                'repeatPassword_error' => $valid['repeatPassword_error'] ?? ''
             ];
             
             $this->render('register', 'layout_login');
@@ -128,7 +128,7 @@ class UserController extends Action
             header('Location: '.URL_PREFIX.'/');
             
         }else{
-            header('Location: '.URL_PREFIX.'/login?login=error');
+            header('Location: '.URL_PREFIX.'/login');
         }
     }
     
@@ -166,7 +166,7 @@ class UserController extends Action
             $this->render('profile', 'layout');
             
         }else{
-             header('Location: '.URL_PREFIX.'/login?login=error');
+             header('Location: '.URL_PREFIX.'/login');
         }
     }
 }
