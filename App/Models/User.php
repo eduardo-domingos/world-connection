@@ -108,34 +108,38 @@ class User extends Model
     {
         $valid = [];
         
-        if(strlen($this->__get('name')) < 3 || empty(strlen($this->__get('name')))){
-            $valid['name'] = 'Nome inválido';
+        if(strlen($this->__get('name')) < 3 || empty($this->__get('name'))){
+            $valid['name_error'] = 'Nome inválido';
         }
         
-        if(strlen($this->__get('email')) < 13 || empty(strlen($this->__get('email')))){
-            $valid['email'] = 'Email inválido';
+        if(strlen($this->__get('email')) < 13 || empty($this->__get('email'))){
+            $valid['email_error'] = 'Email inválido';
         }
         
-        if(strlen($this->__get('phone')) < 14 || empty(strlen($this->__get('phone')))){
-            $valid['phone'] = 'Telefone inválido';
+        if(strlen($this->__get('phone')) < 14 || empty($this->__get('phone'))){
+            $valid['phone_error'] = 'Telefone inválido';
         }
         
         $qntdCpfCnpj = ($this->__get('typePerson') === 'CPF') ? 14 : 18;
         
-        if(strlen($this->__get('cpfCnpj')) < $qntdCpfCnpj || empty(strlen($this->__get('cpfCnpj')))){
-            $valid['cpfCnpj'] = 'CPF ou CNPJ inválido';
+        if(strlen($this->__get('cpfCnpj')) < $qntdCpfCnpj || empty($this->__get('cpfCnpj'))){
+            if($qntdCpfCnpj === 14){
+                $valid['cpf_error'] = 'CPF inválido';
+            }else{
+                $valid['cnpj_error'] = 'CNPJ inválido';
+            }
         }
         
         if(strlen($this->__get('password')) < 8 || empty($this->__get('password'))){
-            $valid['password'] = 'Senha inválida';
+            $valid['password_error'] = 'Senha inválida';
         }
         
         if(strlen($this->__get('repeatPassword')) < 8 || empty($this->__get('repeatPassword'))){
-            $valid['repeatPassword'] = 'Repetir senha inválido';
+            $valid['repeatPassword_error'] = 'Repetir senha inválido';
         }
         
         if($this->__get('password') !== $this->__get('repeatPassword')){
-            $valid['password'] = 'Senhas não conferem';
+            $valid['password_error'] = 'Senhas não conferem';
         }
         
         return $valid;

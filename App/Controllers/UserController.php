@@ -55,7 +55,9 @@ class UserController extends Action
         $user->__set('password', $password);
         $user->__set('repeatPassword', $repeatPassword);
         
-        if(count(($user->validInsertUser())) === 0 && count($user->getUserByEmail()) === 0){
+        $valid = $user->validInsertUser();
+
+        if(count($valid) === 0 && count($user->getUserByEmail()) === 0){
             
             $user->insertUser();
             
@@ -71,10 +73,15 @@ class UserController extends Action
                 'phone'          => $_POST['phone'],
                 'typePerson'     => $_POST['person'],
                 'password'       => $_POST['password'],
-                'repeatPassword' => $_POST['repeatPassword']
+                'repeatPassword' => $_POST['repeatPassword'],
+                'name_error'     => $valid['name_error'],
+                'email_error'    => $valid['email_error'],
+                'cpf_error'      => $valid['cpf_error'] ?? '',
+                'cnpj_error'     => $valid['cnpj_error'] ?? '',
+                'phone_error'          => $valid['phone_error'],
+                'password_error'       => $valid['password_error'],
+                'repeatPassword_error' => $valid['repeatPassword_error']
             ];
-            
-            $this->view->registerError = true;
             
             $this->render('register', 'layout_login');
         }
