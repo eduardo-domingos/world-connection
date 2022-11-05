@@ -101,7 +101,14 @@ class UserController extends Action
      */
     public function login(): void
     {
-        $this->view->login = $_GET['login'] ?? "";
+
+        $this->view->userForm = [
+            'email'          => '',
+            'password'       => '',
+            'email_error'    => '',
+            'password_error' => ''
+        ];
+
         $this->render('login', 'layout_login');
     }
     
@@ -113,7 +120,7 @@ class UserController extends Action
     {
         $user = Container::getModel('User');
         
-        $email = htmlspecialchars(strip_tags($_POST['email']));
+        $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL, FILTER_SANITIZE_EMAIL);
         $password = htmlspecialchars(strip_tags($_POST['password']));
         
         $user->__set('email',$email);
@@ -128,6 +135,14 @@ class UserController extends Action
             header('Location: '.URL_PREFIX.'/');
             
         }else{
+
+            $this->view->userForm = [
+                'email'          => $_POST['email'],
+                'password'       => $_POST['password'],
+                'email_error'    => $_POST['email_error'],
+                'password_error' => $_POST['password_error']
+            ];
+
             header('Location: '.URL_PREFIX.'/login');
         }
     }

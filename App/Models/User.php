@@ -118,12 +118,16 @@ class User extends Model
             $valid['email_error'] = 'Email inválido';
         }elseif(empty($this->__get('email'))){
             $valid['email_error'] = 'Preencha o campo e-mail';
+        }elseif(count($this->getUserByEmail()) != 0){
+            $valid['email_error'] = 'O e-mail informado já está cadastrado';
         }
         
         if(empty($this->__get('phone'))){
             $valid['phone_error'] = 'Preencha o campo celular';
         }elseif(strlen($this->__get('phone')) < 14){
             $valid['phone_error'] = 'Celular inválido';
+        }elseif(count($this->getUserByPhone()) != 0){
+            $valid['phone_error'] = 'O celular informado já está cadastrado';
         }
         
         $qntdCpfCnpj = ($this->__get('typePerson') === 'CPF') ? 14 : 18;
@@ -134,11 +138,15 @@ class User extends Model
             }else{
                 $valid['cnpj_error'] = 'Preencha o campo cnpj';
             }
-        }elseif(strlen($this->__get('cpfCnpj'))){
+        }elseif(strlen($this->__get('cpfCnpj') < 14)){
+            $valid['cpf_error'] = 'CPF inválido';
+        }elseif(strlen($this->__get('cpfCnpj') < 18)){
+            $valid['cnpj_error'] = 'CNPJ inválido';
+        }elseif(count($this->getUserByCpfOrCnpj()) != 0){
             if($qntdCpfCnpj === 14){
-                $valid['cpf_error'] = 'CPF inválido';
+                $valid['cpf_error'] = 'O cpf informado já está cadastrado';
             }else{
-                $valid['cnpj_error'] = 'CNPJ inválido';
+                $valid['cnpj_error'] = 'O cnpj informado já está cadastrado';
             }
         }
         
@@ -177,6 +185,50 @@ class User extends Model
         $stmt->execute();
         
         return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    /**
+     * Retorna o usuário com base no CPF/CNPJ
+     * @return array
+     */
+    public function getUserByCpfOrCnpj(): array
+    {
+
+        $sql = "SELECT 
+                    id_user, name, email
+                FROM
+                    users
+                WHERE
+                    cpf_cnpj = :cpf_cnpj;";
+        
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':cpf_cnpj', $this->__get('cpfCnpj'));
+        $stmt->execute();
+        
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+
+    }
+
+    /**
+     * Retorna usuário com base no telefone
+     * @return array
+     */
+    public function getUserByPhone(): array
+    {
+
+        $sql = "SELECT 
+                    id_user, name, email
+                FROM
+                    users
+                WHERE
+                    phone = :phone;";
+        
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':phone', $this->__get('phone'));
+        $stmt->execute();
+        
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+
     }
     
     /**
