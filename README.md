@@ -20,6 +20,7 @@ Este projeto é um TCC (Trabalho de Conclusão de Curso) que consiste em um web 
 * htaccess (Para redirecionamento e Bloquear acesso as pastas)
 * Padrão de Projeto Singleton
 * Ajax (Fetch API)
+* Proteção contra SQL Injetction, XSS, CSRF
 
 # Observações
 Como o código desse projeto está sendo refatorado(refeito), o projeto ainda não está pronto e nem todas as telas estão 100% funcionais.

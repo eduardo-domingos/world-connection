@@ -138,9 +138,9 @@ class User extends Model
             }else{
                 $valid['cnpj_error'] = 'Preencha o campo cnpj';
             }
-        }elseif(strlen($this->__get('cpfCnpj') < 14)){
+        }elseif(strlen($this->__get('cpfCnpj')) < 14 && $this->__get('typePerson') === 'CPF'){
             $valid['cpf_error'] = 'CPF inválido';
-        }elseif(strlen($this->__get('cpfCnpj') < 18)){
+        }elseif(strlen($this->__get('cpfCnpj')) < 18 && $this->__get('typePerson') === 'CNPJ'){
             $valid['cnpj_error'] = 'CNPJ inválido';
         }elseif(count($this->getUserByCpfOrCnpj()) != 0){
             if($qntdCpfCnpj === 14){

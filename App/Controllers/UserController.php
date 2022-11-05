@@ -5,6 +5,7 @@ namespace App\Controllers;
 use WC\Controller\Action;
 use WC\Model\Container;
 use App\Core\Session;
+use App\Core\Csrf;
 
  
 class UserController extends Action
@@ -53,7 +54,8 @@ class UserController extends Action
         $typePerson = htmlspecialchars(strip_tags($_POST['person']));
         $password = htmlspecialchars(strip_tags($_POST['password']));
         $repeatPassword = htmlspecialchars(strip_tags($_POST['repeatPassword']));
-        
+        $token = htmlspecialchars(strip_tags($_POST['token']));
+
         $user->__set('name', $name);
         $user->__set('email', $email);
         $user->__set('cpfCnpj', $cpfCnpj);
@@ -64,7 +66,7 @@ class UserController extends Action
         
         $valid = $user->validInsertUser();
 
-        if(count($valid) === 0 && count($user->getUserByEmail()) === 0){
+        if(count($valid) === 0 && count($user->getUserByEmail()) === 0 &&  Csrf::verifyToken($token)){
             
             $user->insertUser();
             
@@ -121,13 +123,16 @@ class UserController extends Action
         
         $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL, FILTER_SANITIZE_EMAIL);
         $password = htmlspecialchars(strip_tags($_POST['password']));
+        $token = htmlspecialchars(strip_tags($_POST['token']));
         
         $user->__set('email', $email);
         $user->__set('password', $password);
         
         $userData = $user->autentication();
+
+        var_dump($token, $_SESSION['token'], Csrf::verifyToken($token));
         
-        if(is_object($userData) && !empty($userData->__get('id')) && !empty($userData->__get('email'))){
+        if(is_object($userData) && !empty($userData->__get('id')) && !empty($userData->__get('email')) && Csrf::verifyToken($token)){
             
             Session::login($userData);
             
