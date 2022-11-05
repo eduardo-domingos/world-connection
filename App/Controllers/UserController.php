@@ -25,7 +25,14 @@ class UserController extends Action
                 'phone'          => "",
                 'typePerson'     => "",
                 'password'       => "",
-                'repeatPassword' => ""
+                'repeatPassword' => "",
+                'name_error'     => "",
+                'email_error'    => "",
+                'cpf_error'      => "",
+                'cnpj_error'     => "",
+                'phone_error'    => "",
+                'password_error' => "",
+                'repeatPassword_error' => ""
             ];
         
         $this->render('register', 'layout_login');
