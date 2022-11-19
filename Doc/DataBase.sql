@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS projects (
     title VARCHAR(50) NOT NULL COMMENT 'Título do projeto',
     team TEXT NOT NULL COMMENT 'Equipe do projeto',
     summary TEXT NOT NULL COMMENT 'Resumo sobre o projeto',
-    data_inicio DATE COMMENT 'data de criação desse',
+    date_start DATE COMMENT 'data de criação do projeto',
     video CHAR(11) COMMENT 'URL do projeto no youtube',
     image VARCHAR(50) NOT NULL COMMENT 'armazena o caminho da imagem salva no sistema',
     price DECIMAL(10 , 2 ) COMMENT 'Preço/Valor de investimento para o projeto em questão'
