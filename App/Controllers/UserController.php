@@ -129,8 +129,6 @@ class UserController extends Action
         $user->__set('password', $password);
         
         $userData = $user->autentication();
-
-        var_dump($token, $_SESSION['token'], Csrf::verifyToken($token));
         
         if(is_object($userData) && !empty($userData->__get('id')) && !empty($userData->__get('email')) && Csrf::verifyToken($token)){
             

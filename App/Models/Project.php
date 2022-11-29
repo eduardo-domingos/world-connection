@@ -73,7 +73,21 @@ class Project extends Model
      */
     public function saveProject(): Project
     {
+        $sql = 'INSERT INTO projects(id_user, title, team, summary, video, image, price) 
+                VALUES(:id_user, :title, :team, :summary, :video, :image, :price)';
         
+        $stmt = $this->db->prepare($sql);
+        
+        $stmt->bindValue(':id_user', $this->__get('idUser'));
+        $stmt->bindValue(':title', $this->__get('title'));
+        $stmt->bindValue(':team', $this->__get('team'));
+        $stmt->bindValue(':summary', $this->__get('summary'));
+        $stmt->bindValue(':video', $this->__get('video'));
+        $stmt->bindValue(':image', $this->__get('image'));
+        $stmt->bindValue(':price', $this->__get('price'));
+        $stmt->execute();
+        
+        return $this;
     }
     
     /**
@@ -88,7 +102,7 @@ class Project extends Model
             $valid['title'] = 'Título inválido';
         }
         
-        if(strlen($this->__get('team')) < 3 || empty(strlen($this->__get('team')))){
+        if(strlen($this->__get('team')) < 10 || empty(strlen($this->__get('team')))){
             $valid['team'] = 'Equipe inválido';
         }
         
@@ -108,9 +122,9 @@ class Project extends Model
             $valid['price'] = 'Preço inválido';
         }
         
-        if($this->__get('photo') !== $this->__get('photo')){
+        /*if($this->__get('photo') !== $this->__get('photo')){
             $valid['photo'] = 'Photo inválido';
-        }
+        }*/
         
         return $valid;
         
@@ -126,7 +140,26 @@ class Project extends Model
         
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
+
+     /**
+     * GETTERS
+     * @param string $attribute
+     * @return mixed
+     */
+    public function __get(string $attribute): mixed
+    {
+        return $this->$attribute;
+    }
     
-    
+    /**
+     * SETTERS
+     * @param string $attribute
+     * @param mixed $value
+     * @return void
+     */
+    public function __set(string $attribute, mixed $value): void
+    {
+        $this->$attribute = $value;
+    }
     
 }

@@ -44,7 +44,7 @@
                     <section class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="<?= URL ?>/profile">Meu Perfil</a>
                         <a class="dropdown-item" href="<?= URL ?>/myprojects">Meus Projetos</a>
-                        <a class="dropdown-item" href="<?= URL ?>/createproject">Criar Projeto</a>
+                        <a class="dropdown-item" href="<?= URL ?>/project/create">Criar Projeto</a>
                         <a class="dropdown-item" href="myfinancing">Meus Financiamentos</a>
                         <section class="dropdown-divider"></section>
                         <a class="dropdown-item" href="<?= URL ?>/logout">Sair</a>

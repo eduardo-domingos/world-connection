@@ -29,7 +29,7 @@ class ProjectController extends Action
             
             $this->render('createproject', 'layout');
         }else{
-             header('Location: '.URL_PREFIX.'/login?login=error');
+             header('Location: '.URL_PREFIX);
         }
         
     }
@@ -49,7 +49,8 @@ class ProjectController extends Action
         $price    = htmlspecialchars(strip_tags($_POST['price']));
         
         $project = Container::getModel('Project');
-        
+    
+        $project->__set('idUser', $_SESSION['user']['id']);
         $project->__set('title', $title);
         $project->__set('team', $team);
         $project->__set('summary', $summary);
@@ -57,14 +58,21 @@ class ProjectController extends Action
         $project->__set('video', $video);
         $project->__set('price', $price);
         
-        if(count($projetc->validInsertProject()) === 0){
+        $valid = $project->validInsertProject();
+
+        var_dump($valid);
+
+        if(count($valid) === 0){
             $project->saveProject();
         }else{
-            
-            $this->view->projectError = true;
-            
+
+            $this->view->userForm = [
+                'email'          => $_POST['email'],
+                'password'       => $_POST['password'],
+                'login_error'    => 'Email ou Senha inválidos'
+            ];
+
             $this->render('createproject', 'layout');
-            
         }
         
     }

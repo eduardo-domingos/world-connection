@@ -38,7 +38,7 @@ class Router extends Bootstrap
         ];
         
         $routes['criarProjetosView'] = [
-            'route'      => '/createproject',
+            'route'      => '/project/create',
             'controller' => 'ProjectController',
             'action'     => 'createProject',
             'request_method' => 'GET'

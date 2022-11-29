@@ -7,9 +7,9 @@ class Csrf
 
     /**
      * Gera o Token
-     * @return void
+     * @return string
      */
-    public static function generateToken(): void
+    public static function generateToken(): string
     {
 
         if(!isset($_SESSION['token'])){
@@ -18,8 +18,8 @@ class Csrf
            unset($_SESSION['token']);
            $_SESSION['token'] = md5(uniqid(mt_rand(), true));
         }
-        
-        echo $_SESSION['token'];
+
+        return "<input type='hidden' name='token' value='{$_SESSION['token']}'>";
     }
 
     /**
