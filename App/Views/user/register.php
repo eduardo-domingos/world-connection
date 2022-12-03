@@ -8,7 +8,7 @@
 
     <form action="<?= URL ?>/register" method="POST">
     
-        <input type="hidden" name="token" value="<?= \App\Core\Csrf::generateToken() ?>">
+        <?= \App\Core\Csrf::generateToken() ?>
 
         <div class="form-row">
             <div class="col">
