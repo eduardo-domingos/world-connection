@@ -57,6 +57,7 @@ class ProjectController extends Action
         $locality = htmlspecialchars(strip_tags($_POST['locality']));
         $video    = htmlspecialchars(strip_tags($_POST['video']));
         $price    = htmlspecialchars(strip_tags($_POST['price']));
+        $photo    = $_FILES['photo']['name'];
         
         $project = Container::getModel('Project');
     
@@ -67,10 +68,9 @@ class ProjectController extends Action
         $project->__set('locality', $locality);
         $project->__set('video', $video);
         $project->__set('price', $price);
+        $project->__set('photo', $photo);
         
         $valid = $project->validInsertProject();
-
-        var_dump($valid);
 
         if(count($valid) === 0){
 
@@ -79,7 +79,7 @@ class ProjectController extends Action
         }else{
 
             $this->view->projectForm = [
-                'title'          => $_POST['titel'],
+                'title'          => $_POST['title'],
                 'team'           => $_POST['team'],
                 'summary'        => $_POST['summary'],
                 'locality'       => $_POST['locality'],
@@ -91,7 +91,8 @@ class ProjectController extends Action
                 'summary_error'  => $valid['summary_error'],
                 'locality_error' => $valid['locality_error'],
                 'video_error'    => $valid['video_error'],
-                'price_error'    => $valid['price_error']
+                'price_error'    => $valid['price_error'],
+                'photo_error'    => $valid['photo_error']
             ];
 
             $this->render('createproject', 'layout');

@@ -1,8 +1,9 @@
 <div class="container card-create-project">
     <form action="<?= URL ?>/project/create" method="POST" enctype="multipart/form-data">
 
-    <?= \App\Core\Csrf::generateToken() ?>
+        <?= \App\Core\Csrf::generateToken() ?>
         
+        <!-- Título do Projeto -->
         <div class="form-row">
             <div class="col">
                 <div class="form-group">
@@ -17,6 +18,7 @@
             </div>
         </div>
         
+        <!-- Equipe -->
         <div class="form-row">
             <div class="col">
                 <div class="form-group">
@@ -31,6 +33,7 @@
             </div>
         </div>
         
+        <!-- Resumo -->
         <div class="form-row">
             <div class="col">
                 <div class="form-group">
@@ -45,6 +48,7 @@
             </div>
         </div>
         
+        <!-- Localidade -->
         <div class="form-row">
             <div class="col">
                 <div class="form-group">
@@ -59,11 +63,12 @@
             </div>
         </div>
         
+        <!-- Vídeo -->
         <div class="form-row">
             <div class="col">
                 <div class="form-group">
                     <label>Vídeo</label>
-                    <input type="url"  name="video" class="form-control <?= $this->view->projecForm['video_error'] ? 'is-invalid' : '' ?>" placeholder="url do youtube" value="<?= $this->view->projectForm['video'] ?>">
+                    <input type="url"  name="video" class="form-control <?= $this->view->projectForm['video_error'] ? 'is-invalid' : '' ?>" placeholder="url do youtube" value="<?= $this->view->projectForm['video'] ?>">
 
                     <div class="invalid-feedback">
                         <?= $this->view->projectForm['video_error'] ?>
@@ -73,6 +78,7 @@
             </div>
         </div>
         
+        <!-- Imagem -->
         <div class="form-row">
             <div class="col">
                 <div class="form-group">
@@ -87,11 +93,12 @@
             </div>
         </div>
         
+        <!-- Valor Financiamento -->
         <div class="form-row">
             <div class="col">
                 <div class="form-group">
                     <label>Valor de Financiamento</label>
-                    <input type="text" name="price" class="form-control <?= $this->view->projecForm['price_error'] ? 'is-invalid' : '' ?>" placeholder="dinheiro" value="<?= $this->view->projecForm['price'] ?>">
+                    <input type="text" name="price" class="form-control <?= $this->view->projectForm['price_error'] ? 'is-invalid' : '' ?>" placeholder="dinheiro" value="<?= $this->view->projectForm['price'] ?>">
 
                     <div class="invalid-feedback">
                         <?= $this->view->projectForm['price_error'] ?>

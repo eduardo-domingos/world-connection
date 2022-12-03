@@ -53,7 +53,7 @@ class Project extends Model
      * Caminho da imagem sobre o projeto
      * @var string
      */
-    private string $image;
+    private string $photo;
     
     /**
      * Localidade do Projeto/Equipe
@@ -82,12 +82,48 @@ class Project extends Model
         $stmt->bindValue(':title', $this->__get('title'));
         $stmt->bindValue(':team', $this->__get('team'));
         $stmt->bindValue(':summary', $this->__get('summary'));
-        $stmt->bindValue(':video', $this->__get('video'));
-        $stmt->bindValue(':image', $this->__get('image'));
-        $stmt->bindValue(':price', $this->__get('price'));
+        $stmt->bindValue(':video', $this->treatYoutubeUrl());
+        $stmt->bindValue(':image',  md5(uniqid(time())).'.jpeg');
+        $stmt->bindValue(':price', $this->treatsMoney());
         $stmt->execute();
         
         return $this;
+    }
+
+
+    /**
+     * Trata URL do youtube
+     */
+    private function treatYoutubeUrl()
+    {
+
+        $cdvideo = explode("=",$this->__get('video'));
+
+        $youtube = explode(".",$cdvideo[0]);
+
+        if($youtube[1]=="youtube"){
+
+            if(isset($cdvideo[2])){	
+
+                $valor = explode("&",$cdvideo[1]);
+                $etec = $valor[0];
+
+            }else{
+
+                $etec = $cdvideo[1];
+
+            }	
+        }
+
+    }
+
+    /**
+     * Tratar dinheiro
+     * @return float
+     */
+    private function treatsMoney(): float
+    {
+        return (float) str_replace(',' , '.', $this->__get('price'));
     }
     
     /**
@@ -113,16 +149,20 @@ class Project extends Model
         if(strlen($this->__get('locality')) < 5 || empty(strlen($this->__get('locality')))){
             $valid['locality_error'] = 'Localidade inválido';
         }
-        
-        if(strlen($this->__get('video')) < 18 || empty($this->__get('video')) || filter_var($this->__get('video'), FILTER_SANITIZE_URL)){
-            $valid['video_error'] = 'Vídeo inválida';
+
+        if(strlen($this->__get('video')) < 10 || empty($this->__get('video'))){
+
+            if(filter_var($this->__get('video'), FILTER_SANITIZE_URL, FILTER_VALIDATE_URL)){
+                $valid['video_error'] = 'Vídeo inválida';
+            }
+            
         }
         
-        if(is_float($this->__get('price')) < 0.00 || empty($this->__get('price'))){
+        if((float) $this->__get('price') < 0.00 || empty($this->__get('price'))){
             $valid['price_error'] = 'Preço inválido';
         }
         
-        if($this->__get('photo') !== $this->__get('photo')){
+        if(empty($this->__get('photo'))){
             $valid['photo_error'] = 'Photo inválido';
         }   
         
