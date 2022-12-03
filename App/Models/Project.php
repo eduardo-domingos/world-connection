@@ -99,32 +99,32 @@ class Project extends Model
         $valid = [];
         
         if(strlen($this->__get('title')) < 3 || empty(strlen($this->__get('title')))){
-            $valid['title'] = 'Título inválido';
+            $valid['title_error'] = 'Título inválido';
         }
         
         if(strlen($this->__get('team')) < 10 || empty(strlen($this->__get('team')))){
-            $valid['team'] = 'Equipe inválido';
+            $valid['team_error'] = 'Equipe inválido';
         }
         
         if(strlen($this->__get('summary')) < 20 || empty(strlen($this->__get('summary')))){
-            $valid['summary'] = 'Resumo inválido';
+            $valid['summary_error'] = 'Resumo inválido';
         }
         
         if(strlen($this->__get('locality')) < 5 || empty(strlen($this->__get('locality')))){
-            $valid['locality'] = 'Localidade inválido';
+            $valid['locality_error'] = 'Localidade inválido';
         }
         
         if(strlen($this->__get('video')) < 18 || empty($this->__get('video')) || filter_var($this->__get('video'), FILTER_SANITIZE_URL)){
-            $valid['video'] = 'Vídeo inválida';
+            $valid['video_error'] = 'Vídeo inválida';
         }
         
         if(is_float($this->__get('price')) < 0.00 || empty($this->__get('price'))){
-            $valid['price'] = 'Preço inválido';
+            $valid['price_error'] = 'Preço inválido';
         }
         
-        /*if($this->__get('photo') !== $this->__get('photo')){
-            $valid['photo'] = 'Photo inválido';
-        }*/
+        if($this->__get('photo') !== $this->__get('photo')){
+            $valid['photo_error'] = 'Photo inválido';
+        }   
         
         return $valid;
         

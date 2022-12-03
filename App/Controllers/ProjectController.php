@@ -25,11 +25,21 @@ class ProjectController extends Action
     {
         if(isset($_SESSION['user']['id']) && isset($_SESSION['user']['name']) && isset($_SESSION['user']['email'])){
             
-            $this->view->projectError = false;
+            $this->view->projectForm = [
+                'titlte_error'   => '',
+                'team_error'     => '',
+                'summary_error'  => '',
+                'locality_error' => '',
+                'video_error'    => '',
+                'price_error'    => ''
+            ];
             
             $this->render('createproject', 'layout');
+
         }else{
-             header('Location: '.URL_PREFIX);
+
+            header('Location: '.URL_PREFIX);
+
         }
         
     }
@@ -63,13 +73,25 @@ class ProjectController extends Action
         var_dump($valid);
 
         if(count($valid) === 0){
+
             $project->saveProject();
+
         }else{
 
-            $this->view->userForm = [
-                'email'          => $_POST['email'],
-                'password'       => $_POST['password'],
-                'login_error'    => 'Email ou Senha inválidos'
+            $this->view->projectForm = [
+                'title'          => $_POST['titel'],
+                'team'           => $_POST['team'],
+                'summary'        => $_POST['summary'],
+                'locality'       => $_POST['locality'],
+                'video'          => $_POST['video'],
+                'price'          => $_POST['price'],
+                'photo'          => $_FILES['photo'],
+                'title_error'   => $valid['title_error'],
+                'team_error'     => $valid['team_error'],
+                'summary_error'  => $valid['summary_error'],
+                'locality_error' => $valid['locality_error'],
+                'video_error'    => $valid['video_error'],
+                'price_error'    => $valid['price_error']
             ];
 
             $this->render('createproject', 'layout');

@@ -1,16 +1,16 @@
 <div class="container card-create-project">
     <form action="<?= URL ?>/project/create" method="POST" enctype="multipart/form-data">
 
-    <input type="hidden" name="token" value="<?= \App\Core\Csrf::generateToken() ?>">
+    <?= \App\Core\Csrf::generateToken() ?>
         
         <div class="form-row">
             <div class="col">
                 <div class="form-group">
                     <label>Titulo do Projeto</label>
-                    <input type="text"  name="title"  value="<?= $this->view->projectForm['projectName'] ?>" class="form-control <?= $this->view->projectForm['projectName_error'] ? 'is-invalid' : '' ?>"  placeholder="Nome do Projeto">
+                    <input type="text"  name="title"  value="<?= $this->view->projectForm['title'] ?>" class="form-control <?= $this->view->projectForm['title_error'] ? 'is-invalid' : '' ?>"  placeholder="Nome do Projeto">
 
                     <div class="invalid-feedback">
-                        <?= $this->view->projectForm['projectName_error'] ?>
+                        <?= $this->view->projectForm['title_error'] ?>
                     </div>
 
                 </div>
@@ -77,7 +77,7 @@
             <div class="col">
                 <div class="form-group">
                     <label>Imagem</label>
-                    <input type="file" class="form-control-file <?= $this->view->projecForm['video_error'] ? 'is-invalid' : '' ?>" name="photo" value="<?= $this->projecForm['photo'] ?>">
+                    <input type="file" class="form-control-file <?= $this->view->projecForm['photo_error'] ? 'is-invalid' : '' ?>" name="photo" value="<?= $this->projecForm['photo'] ?>">
 
                     <div class="invalid-feedback">
                         <?= $this->view->projectForm['photo_error'] ?>
